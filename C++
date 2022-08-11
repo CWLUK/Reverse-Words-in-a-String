@@ -1,0 +1,26 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+        int slow = 0;
+        int fast = 0;
+        int cnt = 1;
+        reverse(s.begin(), s.end());
+        while (fast < s.length()) {
+                while (s[fast] == ' ' && fast < s.length()) {
+                        fast++;
+                    }
+                while (s[fast] != ' ' && fast < s.length()) {
+                    fast++;
+                    cnt++;
+                }
+                reverse(s.begin()+slow, s.begin()+fast);
+                if (fast < s.length()){
+                    slow = slow + cnt;
+                    fast++;
+                    cnt = 1;  
+                }
+            }
+        while (s[s.length()-1] == ' ') s.pop_back();
+        return s;
+    }
+};
